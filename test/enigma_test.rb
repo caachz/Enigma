@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
@@ -9,16 +10,16 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Engima, @enigma
+    assert_instance_of Enigma, @enigma
   end
 
   def test_it_creates_a_randomly_generated_key
-    skip
     enigma = mock("enigma")
     enigma.stubs(:random_number).returns([0,2,7,1,5])
-    assert_equal [0,2,7,1,5], enigma.random_number
+    rand_num = enigma.random_number
+    assert_equal [0,2,7,1,5], rand_num
 
-    assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), enigma.key(enigma.random_number)
+    assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), @enigma.key(rand_num)
   end
 
   def test_it_creates_a_hash_from_date
