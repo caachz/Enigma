@@ -23,17 +23,9 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_creates_a_hash_from_date
-    skip
-    enigma = mock("enigma")
-    enigma.stubs(:date).returns("040895")
+    assert_equal 1025, @enigma.offset_code("040895")
 
-    assert_equal "040895", enigma.date
-
-    assert_equal 1672401025, enigma.date_squared(enigma.date)
-
-    assert_equal 1025, engima.offset_code(engigma.date)
-
-    assert_equal ({:a => 1, :b => 0, :c => 2, :d => 5}), enigma.offset(enigma.date)
+    assert_equal ({:a => 1, :b => 0, :c => 2, :d => 5}), @enigma.offset_hash("040895")
   end
 
   def test_it_creates_a_final_shift_hash
