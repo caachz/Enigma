@@ -22,4 +22,8 @@ class Enigma
     offset[:d] = code.to_s[3].to_i
     offset
   end
+
+  def shift(key, shift)
+    key.merge(shift) {|key, oldval, newval| oldval + newval}
+  end
 end
