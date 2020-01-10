@@ -29,12 +29,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_creates_a_final_shift_hash
-    skip
-    enigma = mock("enigma")
-    enigma.stubs(:offset).returns({:a => 1, :b => 0, :c => 2, :d => 5})
-    enigma.stubs(:key).returns({:a => 02, :b => 27, :c => 71, :d => 15})
-
-    assert_equal ({:a => 3, :b => 27, :c => 73, :d => 20}), enigma.shift()
+    assert_equal ({:a => 3, :b => 27, :c => 73, :d => 20}), @enigma.shift({:a => 02, :b => 27, :c => 71, :d => 15}, {:a => 1, :b => 0, :c => 2, :d => 5})
   end
 
   def test_shifted_letter_returns_the_correct_shifted_letter
