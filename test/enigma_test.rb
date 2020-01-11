@@ -33,10 +33,9 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_shifted_letter_returns_the_correct_shifted_letter
-    skip
-    assert_equal "k", @enigma.shift("h", 3)
-    assert_equal "w", @enigma.shift("d", 73)
-    assert_equal "r", @enigma.shift("o", 3)
+    assert_equal "k", @enigma.letter_shifter("h", 3, false)
+    assert_equal "w", @enigma.letter_shifter("d", 73, true)
+    assert_equal "r", @enigma.letter_shifter("o", 3, true)
   end
 
   def test_string_hash_with_letter_as_key_and_shift_amount_as_value
