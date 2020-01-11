@@ -19,7 +19,7 @@ class EnigmaTest < Minitest::Test
     rand_num = enigma.random_number
     assert_equal [0,2,7,1,5], rand_num
 
-    assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), @enigma.key(rand_num)
+    assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), @enigma.key_hash(rand_num)
   end
 
   def test_it_creates_a_hash_from_date
@@ -45,5 +45,13 @@ class EnigmaTest < Minitest::Test
 
   def test_returns_final_encoded_message
     assert_equal "keder ohulw", @enigma.encoded_message({"h0" => 3, "e1" => 27, "l2" => 73, "l3" => 20,"o4" => 3, " 5" => 27, "w6" => 73, "o7" => 20, "r8" => 3, "l9" => 27, "d10" => 73})
+  end
+
+  def test_it_calculates_a_random_key_if_not_given_one
+    assert_equal 5, @enigma.random_key_generator.length
+  end
+
+  def test_it_calcualtes_todays_date_if_not_given_a_date
+    assert_equal 6, @enigma.date_generator.length
   end
 end
