@@ -27,14 +27,13 @@ class Enigma
     key.merge(offset) {|key, oldval, newval| oldval + newval}
   end
 
-  def letter_shifter(letter, number_to_shift, direction)
+  def letter_shifter(letter, number_to_shift, direction = true)
     alphabet = ("a".."z").to_a
     alphabet << " "
-    number_to_shift = number_to_shift % 27
     letter_index = alphabet.find_index(letter)
-    letter_index = letter_index += number_to_shift if direction
-    letter_index = letter_index += number_to_shift if !direction
-    alphabet[letter_index]
+    rotated_alphabet = alphabet.rotate(number_to_shift) if direction
+    rotated_alphabet = alphabet.rotate(-number_to_shift) if !direction
+    rotated_alphabet[letter_index]
   end
 
   def message_to_encode(message, shift)
@@ -44,5 +43,12 @@ class Enigma
         acc[letter + index.to_s] = shift.values[index % 4]
     end
     acc
+  end
+
+  def encoded_message(message_to_encode)
+    encoded = message_to_encode.reduce("") do |acc, (letter, shift)|
+      acc += letter_shifter(letter[0], shift, true)
+      acc
+    end
   end
 end
