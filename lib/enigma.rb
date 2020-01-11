@@ -1,5 +1,14 @@
 class Enigma
-  def key(random_number)
+
+  def random_key_generator
+    number = ""
+    5.times do
+      number += rand(9).to_s
+    end
+    number
+  end
+
+  def key_hash(random_number)
     key = {}
     key[:a] = random_number[0..1].join.to_i
     key[:b] = random_number[1..2].join.to_i
