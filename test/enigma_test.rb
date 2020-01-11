@@ -33,9 +33,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_shifted_letter_returns_the_correct_shifted_letter
-    assert_equal "k", @enigma.letter_shifter("h", 3, false)
+    assert_equal "e", @enigma.letter_shifter("h", 3, false)
     assert_equal "w", @enigma.letter_shifter("d", 73, true)
     assert_equal "r", @enigma.letter_shifter("o", 3, true)
+    assert_equal "d", @enigma.letter_shifter("l", 73)
   end
 
   def test_string_hash_with_letter_as_key_and_shift_amount_as_value
@@ -43,7 +44,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_returns_final_encoded_message
-    skip
-    assert_equal "keder ohulw", @enigma.encoded_message({"h1" => 3, "e2" => 27, "l3" => 73, "l4" => 20,"o5" => 3, " 6" => 27, "w7" => 73, "o8" => 20, "r9" => 3, "l1" => 27, "d2" => 73})
+    assert_equal "keder ohulw", @enigma.encoded_message({"h0" => 3, "e1" => 27, "l2" => 73, "l3" => 20,"o4" => 3, " 5" => 27, "w6" => 73, "o7" => 20, "r8" => 3, "l9" => 27, "d10" => 73})
   end
 end
