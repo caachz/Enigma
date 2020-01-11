@@ -48,7 +48,6 @@ class Enigma
   def encoded_message(message_to_encode)
     encoded = message_to_encode.reduce("") do |acc, (letter, shift)|
       acc += letter_shifter(letter[0], shift, true)
-      require "pry"; binding.pry
       acc
     end
   end
