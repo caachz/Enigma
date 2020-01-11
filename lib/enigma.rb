@@ -6,8 +6,8 @@ class Enigma
     key_hash = key_hash(key)
     date_hash = offset_hash(date)
     combined_hash = combined_hash(key_hash, date_hash)
-    final_hash =  message_to_encode(message, combined_hash)
-    new_message = encoded_message(final_hash)
+    final_hash =  final_hash(message, combined_hash)
+    new_message = coded_message(final_hash, true)
     {:encryption=> new_message, :key => key, :date => date}
   end
 
@@ -56,7 +56,7 @@ class Enigma
     rotated_alphabet[letter_index]
   end
 
-  def message_to_encode(message, combined_hash)
+  def final_hash(message, combined_hash)
     message = message.downcase.split(//)
     acc = {}
     message.each_with_index do |letter, index|
@@ -65,9 +65,9 @@ class Enigma
     acc
   end
 
-  def encoded_message(final_hash)
+  def coded_message(final_hash, direction)
     encoded = final_hash.reduce("") do |acc, (letter, shift)|
-      acc += letter_shifter(letter[0], shift, true)
+      acc += letter_shifter(letter[0], shift, direction)
       acc
     end
   end
