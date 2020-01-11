@@ -39,11 +39,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_string_hash_with_letter_as_key_and_shift_amount_as_value
-    skip
-    enigma = mock("enigma")
-    enigma.stubs(:shift).returns({:a => 3, :b => 27, :c => 73, :d => 20})
-
-    assert_equal ({"h1" => 3, "e2" => 27, "l3" => 73, "l4" => 20,"o5" => 3, " 6" => 27, "w7" => 73, "o8" => 20, "r9" => 3, "l1" => 27, "d2" => 73}), enigma.shiftable_alphabet(enigma.shift)
+    assert_equal ({"h0" => 3, "e1" => 27, "l2" => 73, "l3" => 20,"o4" => 3, " 5" => 27, "w6" => 73, "o7" => 20, "r8" => 3, "l9" => 27, "d10" => 73}), @enigma.message_to_encode("Hello World", {:a => 3, :b => 27, :c => 73, :d => 20})
   end
 
   def test_returns_final_encoded_message

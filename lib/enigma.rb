@@ -30,10 +30,19 @@ class Enigma
   def letter_shifter(letter, number_to_shift, direction)
     alphabet = ("a".."z").to_a
     alphabet << " "
-    number_to_shift = number_to_shift %  27
+    number_to_shift = number_to_shift % 27
     letter_index = alphabet.find_index(letter)
     letter_index = letter_index += number_to_shift if direction
     letter_index = letter_index += number_to_shift if !direction
     alphabet[letter_index]
+  end
+
+  def message_to_encode(message, shift)
+    message = message.downcase.split(//)
+    acc = {}
+    message.each_with_index do |letter, index|
+        acc[letter + index.to_s] = shift.values[index % 4]
+    end
+    acc
   end
 end
