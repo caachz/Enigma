@@ -11,6 +11,15 @@ class Enigma
     {:encryption=> new_message, :key => key, :date => date}
   end
 
+  def decrypt(message, key, date = date_generator)
+    key_hash = key_hash(key)
+    date_hash = offset_hash(date)
+    combined_hash = combined_hash(key_hash, date_hash)
+    final_hash =  final_hash(message, combined_hash)
+    new_message = coded_message(final_hash, false)
+    {:decryption=> new_message, :key => key, :date => date}
+  end
+
   def random_key_generator
     number = ""
     5.times do

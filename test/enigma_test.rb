@@ -64,7 +64,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt_message
-    skip
-    assert_equal ({decryption: "hello world", key: "02715", date: "040895"}), enigma.decrypt("keder ohulw", "02715", "040895")
+    assert_equal ({decryption: "hello world", key: "02715", date: "040895"}), @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 end
