@@ -54,4 +54,14 @@ class EnigmaTest < Minitest::Test
   def test_it_calcualtes_todays_date_if_not_given_a_date
     assert_equal 6, @enigma.date_generator.length
   end
+
+  def test_it_fully_encripts_a_message
+    assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715", "040895")
+
+    assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715")
+
+    assert_equal 11, ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world")[encryption:].length
+    assert_equal 5, @enigma.encrypt("hello world")[key:].length
+    assert_equal 6, @enigma.encrypt("hello world")[date:].length
+  end
 end
