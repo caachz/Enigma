@@ -1,3 +1,5 @@
+require 'date'
+
 class Enigma
 
   def random_key_generator
@@ -6,6 +8,10 @@ class Enigma
       number += rand(9).to_s
     end
     number
+  end
+
+  def date_generator
+    Date.today.strftime("%d%m%y")
   end
 
   def key_hash(random_number)

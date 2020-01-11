@@ -52,8 +52,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_calcualtes_todays_date_if_not_given_a_date
-    skip
-    assert_instance_of String, @enigma.date_generator.class
     assert_equal 6, @enigma.date_generator.length
   end
 end
