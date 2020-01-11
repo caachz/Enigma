@@ -15,21 +15,19 @@ class EnigmaTest < Minitest::Test
 
   def test_it_creates_a_randomly_generated_key
     enigma = mock("enigma")
-    enigma.stubs(:random_number).returns([0,2,7,1,5])
+    enigma.stubs(:random_number).returns("02715")
     rand_num = enigma.random_number
-    assert_equal [0,2,7,1,5], rand_num
+    assert_equal "02715", rand_num
 
     assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), @enigma.key_hash(rand_num)
   end
 
   def test_it_creates_a_hash_from_date
-    assert_equal 1025, @enigma.offset_code("040895")
-
     assert_equal ({:a => 1, :b => 0, :c => 2, :d => 5}), @enigma.offset_hash("040895")
   end
 
   def test_it_creates_a_final_shift_hash
-    assert_equal ({:a => 3, :b => 27, :c => 73, :d => 20}), @enigma.shift({:a => 02, :b => 27, :c => 71, :d => 15}, {:a => 1, :b => 0, :c => 2, :d => 5})
+    assert_equal ({:a => 3, :b => 27, :c => 73, :d => 20}), @enigma.combined_hash({:a => 02, :b => 27, :c => 71, :d => 15}, {:a => 1, :b => 0, :c => 2, :d => 5})
   end
 
   def test_shifted_letter_returns_the_correct_shifted_letter
@@ -53,5 +51,15 @@ class EnigmaTest < Minitest::Test
 
   def test_it_calcualtes_todays_date_if_not_given_a_date
     assert_equal 6, @enigma.date_generator.length
+  end
+
+  def test_it_fully_encripts_a_message
+    assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715", "040895")
+
+    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"110120"}), @enigma.encrypt("hello world", "02715")
+
+    assert_equal 11, @enigma.encrypt("hello world")[:encryption].length
+    assert_equal 5, @enigma.encrypt("hello world")[:key].length
+    assert_equal 6, @enigma.encrypt("hello world")[:date].length
   end
 end
