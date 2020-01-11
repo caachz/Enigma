@@ -23,7 +23,17 @@ class Enigma
     offset
   end
 
-  def shift(key, shift)
-    key.merge(shift) {|key, oldval, newval| oldval + newval}
+  def shift(key, offset)
+    key.merge(offset) {|key, oldval, newval| oldval + newval}
+  end
+
+  def letter_shifter(letter, number_to_shift, direction)
+    alphabet = ("a".."z").to_a
+    alphabet << " "
+    number_to_shift = number_to_shift %  27
+    letter_index = alphabet.find_index(letter)
+    letter_index = letter_index += number_to_shift if direction
+    letter_index = letter_index += number_to_shift if !direction
+    alphabet[letter_index]
   end
 end
