@@ -62,4 +62,8 @@ class EnigmaTest < Minitest::Test
     assert_equal 5, @enigma.encrypt("hello world")[:key].length
     assert_equal 6, @enigma.encrypt("hello world")[:date].length
   end
+
+  def test_decrypt_message
+    assert_equal ({decryption: "hello world", key: "02715", date: "040895"}), enigma.decrypt("keder ohulw", "02715", "040895")
+  end
 end
