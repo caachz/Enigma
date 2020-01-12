@@ -80,4 +80,24 @@ class Enigma
       acc
     end
   end
+
+  def code_to_crack(message)
+    last_four = message[-4..-1].split(//)
+    matching = ([" ", "e", "n", "d"])
+    alphabet = ("a".."z").to_a
+    alphabet << " "
+    code =  []
+    matching_index = 0
+    last_four.each do |letter|
+      index = alphabet.find_index(letter)
+      place_counter = 0
+      until alphabet[index] == matching[matching_index] do
+        alphabet = alphabet.rotate(-1)
+        place_counter += 1
+      end
+      matching_index += 1
+      code << place_counter
+    end
+    code
+  end
 end
