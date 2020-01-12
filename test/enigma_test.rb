@@ -86,6 +86,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_returns_key_of_cracked_message
-    assert_equal 08304, @enigma.key_cracker([8, 2, 3, 4])
+    assert_equal "08304", @enigma.key_cracker([8, 2, 3, 4])
   end
 end
