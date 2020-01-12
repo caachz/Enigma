@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2020-01-11T19:55:18-07:00">2020-01-11T19:55:18-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2020-01-12T09:45:57-07:00">2020-01-12T09:45:57-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         14.4
+         13.7
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>1</b> files in total.
-    <b>74</b> relevant lines. 
-    <span class="green"><b>74</b> lines covered</span> and
+    <b>82</b> relevant lines. 
+    <span class="green"><b>82</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,11 +53,11 @@
       <tr>
         <td class="strong"><a href="#c2072b92f62857fcebdb19308026adbe4834ac7d" class="src_link" title="lib/enigma.rb">lib/enigma.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>103</td>
-        <td>74</td>
-        <td>74</td>
+        <td>114</td>
+        <td>82</td>
+        <td>82</td>
         <td>0</td>
-        <td>14.4</td>
+        <td>13.7</td>
       </tr>
       
     </tbody>
@@ -81,8 +81,8 @@
     <h3>lib/enigma.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>74</b> relevant lines. 
-      <span class="green"><b>74</b> lines covered</span> and
+      <b>82</b> relevant lines. 
+      <span class="green"><b>82</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -703,6 +703,72 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="104">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def cracked_shifter(message, amounts_shifted)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="105">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    message = message.split(//)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="106">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    unique_identifier = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="107">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    message.reverse.reduce({}) do |acc, letter|</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="108">
+          <span class="hits">15</span>
+          
+          <code class="ruby">      acc[letter += unique_identifier.to_s] = amounts_shifted[0]</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="109">
+          <span class="hits">15</span>
+          
+          <code class="ruby">      unique_identifier += 1</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="110">
+          <span class="hits">15</span>
+          
+          <code class="ruby">      amounts_shifted = amounts_shifted.rotate</code>
+        </li>
+      
+        <li class="covered" data-hits="15" data-linenumber="111">
+          <span class="hits">15</span>
+          
+          <code class="ruby">      acc</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="114">
           
           
           <code class="ruby">end</code>

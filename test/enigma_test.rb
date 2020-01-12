@@ -58,7 +58,7 @@ class EnigmaTest < Minitest::Test
   def test_it_fully_encripts_a_message
     assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715", "040895")
 
-    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"110120"}), @enigma.encrypt("hello world", "02715")
+    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"120120"}), @enigma.encrypt("hello world", "02715")
 
     assert_equal 11, @enigma.encrypt("hello world")[:encryption].length
     assert_equal 5, @enigma.encrypt("hello world")[:key].length
@@ -74,8 +74,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_produces_a_hash_with_amount_shifted
-    skip
-    assert_equal ({v14: 14, j13: 5, q12: 5, t11: 19, b10: 14, e9: 5, a8: 5, w7: 19, e6: 14, q5: 5, i4: 5, h3: 19, s2: 14, s1: 5, i0: 5}), @enigma.cracked_shifter("vjqtbeaweqihssi", [5,5,14,19])
+    assert_equal ({"i0"=>5, "s1"=>5, "s2"=>14, "h3"=>19, "i4"=>5, "q5"=>5, "e6"=>14, "w7"=>19, "a8"=>5, "e9"=>5, "b10"=>14, "t11"=>19, "q12"=>5, "j13"=>5, "v14"=>14}), @enigma.cracked_shifter("vjqtbeaweqihssi", [5,5,14,19])
   end
 
   def test_it_returns_cracked_message
