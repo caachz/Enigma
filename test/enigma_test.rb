@@ -82,7 +82,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_calculates_the_key_from_the_code_to_crack
-    skip
-    assert_equal "08304", @enigma.key_cracker("291018", "hello world end")
+    assert_equal [8, 2, 3, 4], @enigma.key_start_values("291018", {"i0"=>5, "s1"=>5, "s2"=>14, "h3"=>8, "i4"=>5, "q5"=>5, "e6"=>14, "w7"=>8, "a8"=>5, "e9"=>5, "b10"=>14, "t11"=>8, "q12"=>5, "j13"=>5, "v14"=>14})
+  end
+
+  def test_it_returns_key_of_cracked_message
+    assert_equal 08304, @enigma.key_cracker([8, 2, 3, 4])
   end
 end

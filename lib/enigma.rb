@@ -119,4 +119,21 @@ class Enigma
     end
     cracked_message.reverse
   end
+
+  def key_start_values(date, crack_message_hash)
+    combined = []
+    4.times do
+      top = crack_message_hash.max_by do |letter, shifted|
+        letter_placement = letter[1..-1].to_i
+      end
+      combined << top[1]
+      crack_message_hash.delete(top[0])
+    end
+    offset = offset_hash(date)
+    key_start_values = []
+    key_start_values << combined[0] - offset[:a]
+    key_start_values << combined[1] - offset[:b]
+    key_start_values << combined[2] - offset[:c]
+    key_start_values << combined[3] - offset[:d]
+  end
 end
