@@ -70,16 +70,15 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_returns_an_array_of_4_digits_to_crack
-    assert_equal [8, 14, 5, 5], @enigma.code_to_crack("vjqtbeaweqihssi")
+    assert_equal [5, 5, 14, 8], @enigma.code_to_crack("vjqtbeaweqihssi")
   end
 
   def test_it_produces_a_hash_with_amount_shifted
-    assert_equal ({"i0"=>5, "s1"=>5, "s2"=>14, "h3"=>19, "i4"=>5, "q5"=>5, "e6"=>14, "w7"=>19, "a8"=>5, "e9"=>5, "b10"=>14, "t11"=>19, "q12"=>5, "j13"=>5, "v14"=>14}), @enigma.cracked_shifter("vjqtbeaweqihssi", [5,5,14,19])
+    assert_equal ({"i0"=>5, "s1"=>5, "s2"=>14, "h3"=>8, "i4"=>5, "q5"=>5, "e6"=>14, "w7"=>8, "a8"=>5, "e9"=>5, "b10"=>14, "t11"=>8, "q12"=>5, "j13"=>5, "v14"=>14}), @enigma.cracked_shifter("vjqtbeaweqihssi", [5, 5, 14, 8])
   end
 
   def test_it_returns_cracked_message
-    skip
-    assert_equal "hello world", @enigma.craked_code
+    assert_equal "hello world end", @enigma.crack_message({"i0"=>5, "s1"=>5, "s2"=>14, "h3"=>8, "i4"=>5, "q5"=>5, "e6"=>14, "w7"=>8, "a8"=>5, "e9"=>5, "b10"=>14, "t11"=>8, "q12"=>5, "j13"=>5, "v14"=>14})
   end
 
   def test_it_calculates_the_key_from_the_code_to_crack

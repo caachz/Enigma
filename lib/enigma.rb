@@ -98,7 +98,7 @@ class Enigma
       matching_index += 1
       code << place_counter
     end
-    code
+    code.reverse
   end
 
   def cracked_shifter(message, amounts_shifted)
@@ -110,5 +110,13 @@ class Enigma
       amounts_shifted = amounts_shifted.rotate
       acc
     end
+  end
+
+  def crack_message(cracked_shifter)
+    cracked_message = cracked_shifter.reduce("") do |acc, (letter, shift_amount)|
+      acc += letter_shifter(letter[0], shift_amount, false)
+      acc
+    end
+    cracked_message.reverse
   end
 end
