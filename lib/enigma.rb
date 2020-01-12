@@ -100,4 +100,15 @@ class Enigma
     end
     code
   end
+
+  def cracked_shifter(message, amounts_shifted)
+    message = message.split(//)
+    unique_identifier = 0
+    message.reverse.reduce({}) do |acc, letter|
+      acc[letter += unique_identifier.to_s] = amounts_shifted[0]
+      unique_identifier += 1
+      amounts_shifted = amounts_shifted.rotate
+      acc
+    end
+  end
 end
