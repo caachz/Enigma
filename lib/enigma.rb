@@ -1,6 +1,8 @@
 require 'date'
+require './lib/generatable'
 
 class Enigma
+  include Generatable
 
   def encrypt(message, key = random_key_generator, date = date_generator)
     key_hash = key_hash(key)
@@ -18,18 +20,6 @@ class Enigma
     final_hash =  final_hash(message, combined_hash)
     new_message = coded_message(final_hash, false)
     {:decryption=> new_message, :key => key, :date => date}
-  end
-
-  def random_key_generator
-    number = ""
-    5.times do
-      number += rand(9).to_s
-    end
-    number
-  end
-
-  def date_generator
-    Date.today.strftime("%d%m%y")
   end
 
   def key_hash(key_input)
