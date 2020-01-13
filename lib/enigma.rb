@@ -1,34 +1,27 @@
 require 'date'
 require './lib/generatable'
+require './lib/cryptable'
 
 class Enigma
   include Generatable
+  include Cryptable
 
   def encrypt(message, key = random_key_generator, date = date_generator)
-    key_hash = key_hash(key)
+    final_key = key_hash(key)
     date_hash = offset_hash(date)
-    combined_hash = combined_hash(key_hash, date_hash)
+    combined_hash = combined_hash(final_key, date_hash)
     final_hash =  final_hash(message, combined_hash)
     new_message = coded_message(final_hash, true)
     {:encryption=> new_message, :key => key, :date => date}
   end
 
   def decrypt(message, key, date = date_generator)
-    key_hash = key_hash(key)
+    final_key = key_hash(key)
     date_hash = offset_hash(date)
-    combined_hash = combined_hash(key_hash, date_hash)
+    combined_hash = combined_hash(final_key, date_hash)
     final_hash =  final_hash(message, combined_hash)
     new_message = coded_message(final_hash, false)
     {:decryption=> new_message, :key => key, :date => date}
-  end
-
-  def key_hash(key_input)
-    key = {}
-    key[:a] = key_input[0..1].to_i
-    key[:b] = key_input[1..2].to_i
-    key[:c] = key_input[2..3].to_i
-    key[:d] = key_input[3..4].to_i
-    key
   end
 
   def offset_hash(date)
