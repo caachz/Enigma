@@ -7,39 +7,14 @@ class Enigma
   include Cryptable
 
   def encrypt(message, key = random_key_generator, date = date_generator)
-    final_key = key_hash(key)
-    date_hash = offset_hash(date)
-    combined_hash = combined_hash(final_key, date_hash)
-    final_hash =  final_hash(message, combined_hash)
-    new_message = coded_message(final_hash, true)
+    new_message = cryption(message, key, date, true)
     {:encryption=> new_message, :key => key, :date => date}
   end
 
   def decrypt(message, key, date = date_generator)
-    final_key = key_hash(key)
-    date_hash = offset_hash(date)
-    combined_hash = combined_hash(final_key, date_hash)
-    final_hash =  final_hash(message, combined_hash)
-    new_message = coded_message(final_hash, false)
+    new_message = cryption(message, key, date, false)
     {:decryption=> new_message, :key => key, :date => date}
   end
-
-
-  def final_hash(message, combined_hash)
-    message = message.downcase.split(//)
-    acc = {}
-    message.each_with_index do |letter, index|
-        acc[letter + index.to_s] = combined_hash.values[index % 4]
-    end
-    acc
-  end
-
-  # def coded_message(final_hash, direction)
-  #   encoded = final_hash.reduce("") do |acc, (letter, shift)|
-  #     acc += letter_shifter(letter[0], shift, direction)
-  #     acc
-  #   end
-  # end
 
   def code_to_crack(message)
     last_four = message[-4..-1].split(//)
