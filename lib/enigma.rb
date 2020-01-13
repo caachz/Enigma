@@ -54,4 +54,56 @@ class Enigma
     end
     cracked_message.reverse
   end
+
+  def key_start_values(date, crack_message_hash)
+    combined = []
+    4.times do
+      top = crack_message_hash.max_by do |letter, shifted|
+        letter_placement = letter[1..-1].to_i
+      end
+      combined << top[1]
+      crack_message_hash.delete(top[0])
+    end
+    offset = offset_hash(date)
+    key_start_values = []
+    key_start_values << combined[0] - offset[:a]
+    key_start_values << combined[1] - offset[:b]
+    key_start_values << combined[2] - offset[:c]
+    key_start_values << combined[3] - offset[:d]
+  end
+
+  def key_cracker_options(start_values)
+    options = start_values.reduce([]) do |acc, value|
+      value_options = []
+      4.times do
+        value_options << value.to_s
+        value += 27
+      end
+      acc << value_options
+      acc
+    end
+
+    options = options.map do |option_array|
+      option_array.map do |option|
+        option = "0" + option if option.length == 1
+        option
+      end
+    end
+  end
+
+  def narrow_down_keys(options)
+    final_array = []
+    options.each do |option|
+      inner_array = []
+      comparison = options.find_index(option) + 1
+      options[options.find_index(option)].each do |first_element|
+        next if options.find_index(option) + 1 == 4
+        options[comparison].each do |second_element|
+          inner_array << first_element if first_element[1] == second_element[0]
+        end
+      end
+      final_array << inner_array
+    end
+    final_array
+  end
 end
