@@ -24,9 +24,6 @@ class Enigma
     {:decryption=> new_message, :key => key, :date => date}
   end
 
-  def combined_hash(key_hash, date_hash)
-    key_hash.merge(date_hash) {|key, oldval, newval| oldval + newval}
-  end
 
   def letter_shifter(letter, number_to_shift, direction = true)
     alphabet = ("a".."z").to_a

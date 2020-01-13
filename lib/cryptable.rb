@@ -20,4 +20,10 @@ module Cryptable
     offset
   end
 
+  def combined_hash(key_hash, date_hash)
+    key_hash.merge(date_hash) {|key, oldval, newval| oldval + newval}
+  end
+
+  
+
 end
