@@ -24,17 +24,6 @@ class Enigma
     {:decryption=> new_message, :key => key, :date => date}
   end
 
-  def offset_hash(date)
-    squared = date.to_i ** 2
-    code = squared.to_s[-4..-1].to_i
-    offset = {}
-    offset[:a] = code.to_s[0].to_i
-    offset[:b] = code.to_s[1].to_i
-    offset[:c] = code.to_s[2].to_i
-    offset[:d] = code.to_s[3].to_i
-    offset
-  end
-
   def combined_hash(key_hash, date_hash)
     key_hash.merge(date_hash) {|key, oldval, newval| oldval + newval}
   end
