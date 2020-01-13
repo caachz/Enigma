@@ -91,7 +91,7 @@ class Enigma
     end
   end
 
-  def narrow_down_keys(options, direction)
+  def narrow_down_keys(options)
     final_array = []
     options.each do |option|
       inner_array = []
@@ -110,17 +110,9 @@ class Enigma
   end
 
   def cracked_keys(options)
-    right_narrow = narrow_down_keys(options, true)
-    left_narrow = narrow_down_keys(options.reverse, false).reverse
-    final_array = []
-    combined = right_narrow.zip(left_narrow)
-    combined.each do |options|
-      if options[0].length == 0 || options[1].length == 0
-        final_array << (options[1] | options[0])
-      else
-        final_array << (options[1] & options[0])
-      end
-    end
-    require "pry"; binding.pry
+    right_narrow = narrow_down_keys(options)
+    left_narrow = narrow_down_keys(options.reverse).reverse
+    right_narrow.last << left_narrow.last
+    combined = right_narrow.map {|options| options.flatten}
   end
 end
