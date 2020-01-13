@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2020-01-13T09:47:51-07:00">2020-01-13T09:47:51-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2020-01-13T10:44:52-07:00">2020-01-13T10:44:52-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         16.01
+         15.73
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>3</b> files in total.
-    <b>128</b> relevant lines. 
-    <span class="green"><b>128</b> lines covered</span> and
+    <b>137</b> relevant lines. 
+    <span class="green"><b>137</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,11 +63,11 @@
       <tr>
         <td class="strong"><a href="#c2072b92f62857fcebdb19308026adbe4834ac7d" class="src_link" title="lib/enigma.rb">lib/enigma.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>109</td>
-        <td>77</td>
-        <td>77</td>
+        <td>125</td>
+        <td>86</td>
+        <td>86</td>
         <td>0</td>
-        <td>6.1</td>
+        <td>6.7</td>
       </tr>
       
       <tr>
@@ -486,8 +486,8 @@
     <h3>lib/enigma.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>77</b> relevant lines. 
-      <span class="green"><b>77</b> lines covered</span> and
+      <b>86</b> relevant lines. 
+      <span class="green"><b>86</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1056,53 +1056,53 @@
         <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
-          <code class="ruby">  def narrow_down_keys(options)</code>
+          <code class="ruby">  def narrow_down_keys(options, direction)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="95">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="95">
+          <span class="hits">2</span>
           
           <code class="ruby">    final_array = []</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="96">
+          <span class="hits">2</span>
           
           <code class="ruby">    options.each do |option|</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="97">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="97">
+          <span class="hits">8</span>
           
           <code class="ruby">      inner_array = []</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="98">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="98">
+          <span class="hits">8</span>
           
           <code class="ruby">      comparison = options.find_index(option) + 1</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="99">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="99">
+          <span class="hits">8</span>
           
           <code class="ruby">      options[options.find_index(option)].each do |first_element|</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="100">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="32" data-linenumber="100">
+          <span class="hits">32</span>
           
           <code class="ruby">        next if options.find_index(option) + 1 == 4</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="101">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="24" data-linenumber="101">
+          <span class="hits">24</span>
           
           <code class="ruby">        options[comparison].each do |second_element|</code>
         </li>
       
-        <li class="covered" data-hits="48" data-linenumber="102">
-          <span class="hits">48</span>
+        <li class="covered" data-hits="96" data-linenumber="102">
+          <span class="hits">96</span>
           
           <code class="ruby">          inner_array &lt;&lt; first_element if first_element[1] == second_element[0]</code>
         </li>
@@ -1110,40 +1110,136 @@
         <li class="never" data-hits="" data-linenumber="103">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">          # require &quot;pry&quot;; binding.pry</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="104">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">          # inner_array &lt;&lt; first_element if first_element[1] == second_element[0] &amp;&amp; !direction</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="105">
-          <span class="hits">4</span>
+        <li class="never" data-hits="" data-linenumber="105">
           
-          <code class="ruby">      final_array &lt;&lt; inner_array</code>
+          
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="106">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="8" data-linenumber="107">
+          <span class="hits">8</span>
           
-          <code class="ruby">    final_array</code>
+          <code class="ruby">      final_array &lt;&lt; inner_array</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="108">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="109">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    final_array</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="110">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="109">
+        <li class="never" data-hits="" data-linenumber="111">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="112">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def cracked_keys(options)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="113">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    right_narrow = narrow_down_keys(options, true)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    left_narrow = narrow_down_keys(options.reverse, false).reverse</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="115">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    final_array = []</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="116">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    combined = right_narrow.zip(left_narrow)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="117">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    combined.each do |options|</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="118">
+          <span class="hits">4</span>
+          
+          <code class="ruby">      if options[0].length == 0 || options[1].length == 0</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="119">
+          <span class="hits">2</span>
+          
+          <code class="ruby">        final_array &lt;&lt; (options[1] | options[0])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="121">
+          <span class="hits">2</span>
+          
+          <code class="ruby">        final_array &lt;&lt; (options[1] &amp; options[0])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
           
           
           <code class="ruby">end</code>

@@ -91,7 +91,7 @@ class Enigma
     end
   end
 
-  def narrow_down_keys(options)
+  def narrow_down_keys(options, direction)
     final_array = []
     options.each do |option|
       inner_array = []
@@ -100,10 +100,27 @@ class Enigma
         next if options.find_index(option) + 1 == 4
         options[comparison].each do |second_element|
           inner_array << first_element if first_element[1] == second_element[0]
+          # require "pry"; binding.pry
+          # inner_array << first_element if first_element[1] == second_element[0] && !direction
         end
       end
       final_array << inner_array
     end
     final_array
+  end
+
+  def cracked_keys(options)
+    right_narrow = narrow_down_keys(options, true)
+    left_narrow = narrow_down_keys(options.reverse, false).reverse
+    final_array = []
+    combined = right_narrow.zip(left_narrow)
+    combined.each do |options|
+      if options[0].length == 0 || options[1].length == 0
+        final_array << (options[1] | options[0])
+      else
+        final_array << (options[1] & options[0])
+      end
+    end
+    require "pry"; binding.pry
   end
 end

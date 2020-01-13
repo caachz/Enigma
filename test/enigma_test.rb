@@ -98,10 +98,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_narrows_key_possabilities_for_one_passthrough
-    assert_equal [["08", "35", "62"],["29", "56", "83"], ["30"], ["04"]], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
+    assert_equal [["08", "35", "62"], ["83"], ["03", "30"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
   end
 
-  def test_case_name
-    assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62"],["29", "56", "83"], ["30"], ["04"]])
+  def test_it_returns_key
+    assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
   end
 end
