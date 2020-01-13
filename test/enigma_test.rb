@@ -40,7 +40,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_string_hash_with_letter_as_key_and_shift_amount_as_value
-    assert_equal ({"h0" => 3, "e1" => 27, "l2" => 73, "l3" => 20,"o4" => 3, " 5" => 27, "w6" => 73, "o7" => 20, "r8" => 3, "l9" => 27, "d10" => 73}), @enigma.final_hash("Hello World", {:a => 3, :b => 27, :c => 73, :d => 20})
+    assert_equal ({"h0" => 3, "e1" => 27, "l2" => 73, "l3" => 20,"o4" => 3, " 5" => 27, "w6" => 73, "o7" => 20, "r8" => 3, "l9" => 27, "d10" => 73}), @enigma.message_hash("Hello World", {:a => 3, :b => 27, :c => 73, :d => 20})
   end
 
   def test_returns_final_encoded_message
@@ -53,6 +53,14 @@ class EnigmaTest < Minitest::Test
 
   def test_it_calcualtes_todays_date_if_not_given_a_date
     assert_equal 6, @enigma.date_generator.length
+  end
+
+  def test_cryption_returns_either_encrypted_or_decrypted_message
+    assert_equal "qsshxnck zk", @enigma.cryption("hello world", "03822", "12022019", true)
+
+    assert_equal "hello world", @enigma.cryption("qsshxnck zk", "03822", "12022019", false)
+
+    assert_equal "qsshxnck zk!", @enigma.cryption("hello world!", "03822", "12022019", true)
   end
 
   def test_it_fully_encripts_a_message
@@ -89,7 +97,11 @@ class EnigmaTest < Minitest::Test
     assert_equal [["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]], @enigma.key_cracker_options([8, 2, 3, 4])
   end
 
-  def test_it_narrows_key_possabilities_to_only_ones_possible
+  def test_it_narrows_key_possabilities_for_one_passthrough
     assert_equal [["08", "35", "62"],["29", "56", "83"], ["30"], ["04"]], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
+  end
+
+  def test_case_name
+    assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62"],["29", "56", "83"], ["30"], ["04"]])
   end
 end
