@@ -24,6 +24,13 @@ module Cryptable
     key_hash.merge(date_hash) {|key, oldval, newval| oldval + newval}
   end
 
-  
+  def letter_shifter(letter, number_to_shift, direction = true)
+    alphabet = ("a".."z").to_a
+    alphabet << " "
+    letter_index = alphabet.find_index(letter)
+    rotated_alphabet = alphabet.rotate(number_to_shift) if direction
+    rotated_alphabet = alphabet.rotate(-number_to_shift) if !direction
+    rotated_alphabet[letter_index]
+  end
 
 end
