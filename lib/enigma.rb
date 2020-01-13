@@ -34,12 +34,12 @@ class Enigma
     acc
   end
 
-  def coded_message(final_hash, direction)
-    encoded = final_hash.reduce("") do |acc, (letter, shift)|
-      acc += letter_shifter(letter[0], shift, direction)
-      acc
-    end
-  end
+  # def coded_message(final_hash, direction)
+  #   encoded = final_hash.reduce("") do |acc, (letter, shift)|
+  #     acc += letter_shifter(letter[0], shift, direction)
+  #     acc
+  #   end
+  # end
 
   def code_to_crack(message)
     last_four = message[-4..-1].split(//)

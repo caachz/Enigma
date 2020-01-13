@@ -33,4 +33,10 @@ module Cryptable
     rotated_alphabet[letter_index]
   end
 
+  def coded_message(final_hash, direction)
+    encoded = final_hash.reduce("") do |acc, (letter, shift)|
+      acc += letter_shifter(letter[0], shift, direction)
+      acc
+    end
+  end
 end
