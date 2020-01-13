@@ -137,7 +137,7 @@ class Enigma
     key_start_values << combined[3] - offset[:d]
   end
 
-  def key_cracker(start_values)
+  def key_cracker_options(start_values)
     options = start_values.reduce([]) do |acc, value|
       value_options = []
       4.times do
@@ -154,11 +154,12 @@ class Enigma
         option
       end
     end
-    one_ahead = 1
-    exlude_non_options = options.map do |option|
-      selected_options = option.find_all do |number|
-        require "pry"; binding.pry
-      end
-    end
   end
+
+  # one_ahead = 1
+  # exlude_non_options = options.map do |option|
+  #   selected_options = option.find_all do |number|
+  #   end
+  # end
+
 end
