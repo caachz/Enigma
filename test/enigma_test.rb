@@ -100,9 +100,13 @@ class EnigmaTest < Minitest::Test
     assert_equal [["08", "35", "62"], ["83"], ["03", "30"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]], true)
   end
 
-  def test_it_returns_key
+  def test_it_returns_key_array
     assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
 
     @enigma.narrow_down_keys( [["08", "35", "62"], ["83"], ["03", "30"], ["58", "85"]], true)
+  end
+
+  def test_it_takes_the_key_array_and_returns_a_key
+    assert_equal "08304", @enigma.cracked_keysarray_to_key(["08", "83", "30", "04"])
   end
 end

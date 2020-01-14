@@ -130,4 +130,13 @@ class Enigma
     final_combined = combine_key_options(final_combined)
     final_combined.flatten
   end
+
+  def cracked_keysarray_to_key(values)
+    final = ""
+    values.each do |value|
+      final += value[0]
+      final += value[1] if values[-1] == value
+    end
+    final
+  end
 end

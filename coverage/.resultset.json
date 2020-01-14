@@ -134,6 +134,15 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        1,
+        4,
+        4,
+        null,
+        1,
+        null,
         null
       ],
       "/Users/cassieachzenick/turing/mod1/enigma/lib/generatable.rb": [
@@ -216,6 +225,6 @@
         null
       ]
     },
-    "timestamp": 1579026594
+    "timestamp": 1579027372
   }
 }
