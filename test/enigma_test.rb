@@ -3,6 +3,8 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'mocha/minitest'
+require 'date'
+require './lib/generatable'
 require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
@@ -65,7 +67,10 @@ class EnigmaTest < Minitest::Test
   def test_it_fully_encripts_a_message
     assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715", "040895")
 
-    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"140120"}), @enigma.encrypt("hello world", "02715")
+    date = mock("date")
+    date.stubs(:date).returns(Date.today.strftime("%d%m%y"))
+
+    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>date.date}), @enigma.encrypt("hello world", "02715")
 
     assert_equal 11, @enigma.encrypt("hello world")[:encryption].length
     assert_equal 5, @enigma.encrypt("hello world")[:key].length
@@ -117,6 +122,6 @@ class EnigmaTest < Minitest::Test
 
     encryption = @enigma.encrypt("Hello world end", "96721")
 
-    assert_equal ({:decryption=>"hello world end", :date=>"140120", :key=>"696721"}), @enigma.crack(encryption[:encryption], encryption[:date])
+    assert_equal ({:decryption=>"hello world end", :date=>encryption[:date], :key=>"696721"}), @enigma.crack(encryption[:encryption], encryption[:date])
   end
 end

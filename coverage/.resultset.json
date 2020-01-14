@@ -1,6 +1,22 @@
 {
   "Unit Tests": {
     "coverage": {
+      "/Users/cassieachzenick/turing/mod1/enigma/lib/generatable.rb": [
+        1,
+        null,
+        1,
+        4,
+        4,
+        20,
+        null,
+        4,
+        null,
+        null,
+        1,
+        6,
+        null,
+        null
+      ],
       "/Users/cassieachzenick/turing/mod1/enigma/lib/enigma.rb": [
         1,
         1,
@@ -33,22 +49,6 @@
         3,
         null,
         3,
-        null,
-        null
-      ],
-      "/Users/cassieachzenick/turing/mod1/enigma/lib/generatable.rb": [
-        1,
-        null,
-        1,
-        4,
-        4,
-        20,
-        null,
-        4,
-        null,
-        null,
-        1,
-        6,
         null,
         null
       ],
@@ -244,6 +244,6 @@
         null
       ]
     },
-    "timestamp": 1579043020
+    "timestamp": 1579043660
   }
 }
