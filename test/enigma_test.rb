@@ -109,4 +109,12 @@ class EnigmaTest < Minitest::Test
   def test_it_takes_the_key_array_and_returns_a_key
     assert_equal "08304", @enigma.cracked_keysarray_to_key(["08", "83", "30", "04"])
   end
+
+  def test_it_can_crack_keys
+    assert_equal ({decryption: "hello world end", date: "291018", key: "08304"}), @engima.crack("vjqtbeaweqihssi", "291018")
+
+    encryption = @enigma.encrypt("Hello world", "96721")[:encryption]
+
+    assert_equal "96721", @enigma.cracking(encryption)
+  end
 end
