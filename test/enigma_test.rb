@@ -111,10 +111,12 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_crack_keys
-    assert_equal ({decryption: "hello world end", date: "291018", key: "08304"}), @engima.crack("vjqtbeaweqihssi", "291018")
+    assert_equal ({decryption: "hello world end", date: "291018", key: "08304"}), @enigma.crack("vjqtbeaweqihssi", "291018")
 
-    encryption = @enigma.encrypt("Hello world", "96721")[:encryption]
+    assert_equal ({:decryption=>"test test end", :date=>"140120", :key=>"08304"}), @enigma.crack("ekvxlzhwefhrp", "140120")
 
-    assert_equal "96721", @enigma.cracking(encryption)
+    encryption = @enigma.encrypt("Hello world end", "96721")
+
+    assert_equal ({:decryption=>"hello world end", :date=>"140120", :key=>"696721"}), @enigma.crack(encryption[:encryption], encryption[:date])
   end
 end
