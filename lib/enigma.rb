@@ -91,7 +91,7 @@ class Enigma
     end
   end
 
-  def narrow_down_keys(options)
+  def narrow_down_keys(options, direction)
     final_array = []
     options.each do |option|
       inner_array = []
@@ -99,20 +99,35 @@ class Enigma
       options[options.find_index(option)].each do |first_element|
         next if options.find_index(option) + 1 == 4
         options[comparison].each do |second_element|
-          inner_array << first_element if first_element[1] == second_element[0]
-          # require "pry"; binding.pry
-          # inner_array << first_element if first_element[1] == second_element[0] && !direction
+          inner_array << first_element if first_element[1] == second_element[0] && direction
+          inner_array << first_element if first_element[0] == second_element[1] && !direction
         end
+        end
+        final_array << inner_array
       end
-      final_array << inner_array
-    end
     final_array
   end
 
+  def combine_key_options(combined)
+    result = combined.reduce([]) do |acc, key_options|
+      if key_options[0].length == 0 || key_options[1].length == 0
+        acc << (key_options[0] | key_options[1])
+      else
+        acc << (key_options[0] & key_options[1])
+      end
+      acc
+    end
+  end
+
   def cracked_keys(options)
-    right_narrow = narrow_down_keys(options)
-    left_narrow = narrow_down_keys(options.reverse).reverse
-    right_narrow.last << left_narrow.last
-    combined = right_narrow.map {|options| options.flatten}
+    right_narrow = narrow_down_keys(options, true)
+    left_narrow = narrow_down_keys(options.reverse, false).reverse
+    combined = right_narrow.zip(left_narrow)
+    result = combine_key_options(combined)
+    right_result = narrow_down_keys(result, true)
+    left_result = narrow_down_keys(result.reverse, false).reverse
+    final_combined = left_result.zip(right_result)
+    final_combined = combine_key_options(final_combined)
+    final_combined.flatten
   end
 end

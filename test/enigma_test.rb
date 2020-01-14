@@ -65,7 +65,7 @@ class EnigmaTest < Minitest::Test
   def test_it_fully_encripts_a_message
     assert_equal ({encryption: "keder ohulw", key: "02715", date: "040895"}), @enigma.encrypt("hello world", "02715", "040895")
 
-    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"130120"}), @enigma.encrypt("hello world", "02715")
+    assert_equal ({:encryption=>"nib udmcxpu", :key=>"02715", :date=>"140120"}), @enigma.encrypt("hello world", "02715")
 
     assert_equal 11, @enigma.encrypt("hello world")[:encryption].length
     assert_equal 5, @enigma.encrypt("hello world")[:key].length
@@ -97,13 +97,12 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_narrows_key_possabilities_for_one_passthrough
-    skip
-    assert_equal [["08", "35", "62"], ["83"], ["03", "30"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
+    assert_equal [["08", "35", "62"], ["83"], ["03", "30"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]], true)
   end
 
   def test_it_returns_key
-    # assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
+    assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
 
-    @enigma.narrow_down_keys( [["08", "35", "62"], ["83"], ["03", "30"], ["58", "85"]])
+    @enigma.narrow_down_keys( [["08", "35", "62"], ["83"], ["03", "30"], ["58", "85"]], true)
   end
 end
