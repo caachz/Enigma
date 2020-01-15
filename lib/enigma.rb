@@ -16,7 +16,7 @@ class Enigma
   def decrypt(message, key, date = date_generator)
     new_message = cryption(message, key, date, false)
     {:decryption=> new_message, :key => key, :date => date}
-  end
+  end 
 
   def crack(message, date = date_generator)
     shift = code_to_crack(message)

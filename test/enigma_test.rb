@@ -22,6 +22,8 @@ class EnigmaTest < Minitest::Test
     enigma.stubs(:random_key_generator).returns("02715")
     assert_equal "02715", enigma.random_key_generator
 
+    assert_equal 5, @enigma.random_key_generator.length
+
     assert_equal ({:a => 02, :b => 27, :c => 71, :d => 15}), @enigma.key_hash(enigma.random_key_generator)
   end
 
@@ -38,6 +40,7 @@ class EnigmaTest < Minitest::Test
     assert_equal "w", @enigma.letter_shifter("d", 73, true)
     assert_equal "r", @enigma.letter_shifter("o", 3, true)
     assert_equal "d", @enigma.letter_shifter("l", 73)
+    assert_equal "!", @enigma.letter_shifter("!", 8)
   end
 
   def test_string_hash_with_letter_as_key_and_shift_amount_as_value
@@ -53,6 +56,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_calcualtes_todays_date_if_not_given_a_date
+    date = mock("date")
+    date.stubs(:date).returns(Date.today.strftime("%d%m%y"))
+
+    assert_equal date.date, @enigma.date_generator
     assert_equal 6, @enigma.date_generator.length
   end
 
@@ -103,12 +110,19 @@ class EnigmaTest < Minitest::Test
 
   def test_it_narrows_key_possabilities_for_one_passthrough
     assert_equal [["08", "35", "62"], ["83"], ["03", "30"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]], true)
+
+    assert_equal [["35", "62"], ["02"], ["57", "84"], []], @enigma.narrow_down_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]], false)
+  end
+
+  def test_combine_key_options
+    options = mock("options")
+    options.stubs(:combined_narrowed).returns([[["08", "35", "62"], []], [["83"], ["29", "56", "83"]], [["03", "30"], ["30"]], [[], ["04", "31"]]])
+
+    assert_equal [["08", "35", "62"], ["83"], ["30"], ["04", "31"]], @enigma.combine_key_options(options.combined_narrowed)
   end
 
   def test_it_returns_key_array
     assert_equal ["08", "83", "30", "04"], @enigma.cracked_keys([["08", "35", "62", "89"], ["02", "29", "56", "83"], ["03", "30", "57", "84"], ["04", "31", "58", "85"]])
-
-    @enigma.narrow_down_keys( [["08", "35", "62"], ["83"], ["03", "30"], ["58", "85"]], true)
   end
 
   def test_it_takes_the_key_array_and_returns_a_key
